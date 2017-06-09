@@ -1,11 +1,10 @@
-'use strict';
-
 var mod = require('../../src/data-structures/red-black-tree.js');
 var Vertex = mod.Node;
 var RBTree = mod.RBTree;
 var Colors = mod.Colors;
 
 describe('Node', function () {
+  'use strict';
 
   it('should be a constructor function', function () {
     expect(typeof Vertex).toBe('function');
@@ -37,6 +36,8 @@ describe('Node', function () {
 });
 
 describe('RBTree', function () {
+  'use strict';
+
   it('should be a constructor function', function () {
     expect(typeof RBTree).toBe('function');
   });
@@ -94,6 +95,22 @@ describe('RBTree', function () {
       expect(tree.get(5)).toBe('foobar');
       tree.put(5, 'foobar1');
       expect(tree.get(5)).toBe('foobar1');
+    });
+  });
+
+  describe('levelOrderTraversal method', function () {
+    it('should be able to traverse tree in level order', function () {
+      var tree = new RBTree();
+      expect(tree.levelOrderTraversal()).toBe('Level Order Traversal -: Tree is empty');
+      tree.put(10);
+      tree.put(20);
+      expect(tree.levelOrderTraversal()).toBe('Level Order Traversal -: 20 10');
+      tree.put(30);
+      expect(tree.levelOrderTraversal()).toBe('Level Order Traversal -: 20 10 30');
+      tree.put(45);
+      expect(tree.levelOrderTraversal()).toBe('Level Order Traversal -: 20 10 45 30');
+      tree.put(5);
+      expect(tree.levelOrderTraversal()).toBe('Level Order Traversal -: 20 10 45 5 30');
     });
   });
 
